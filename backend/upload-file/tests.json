@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Reject without admin key",
+      "method": "POST",
+      "path": "/",
+      "headers": {},
+      "body": {"film_id": "1", "type": "video_url", "url": "https://youtube.com/embed/test"},
+      "expectedStatus": 403
+    },
+    {
+      "name": "Save video URL",
+      "method": "POST",
+      "path": "/",
+      "headers": {"X-Admin-Key": "cinemaxx-admin"},
+      "body": {"film_id": "1", "type": "video_url", "url": "https://www.youtube.com/embed/ue80QwXMRHg"},
+      "expectedStatus": 200
+    }
+  ]
+}
